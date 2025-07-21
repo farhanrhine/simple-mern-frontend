@@ -11,12 +11,20 @@ function TodoForm({ onAdd }) {
 
     if (!text.trim()) return;
 
+  //   try {
+  //     const res = await axios.post('http://localhost:5000/api/todos', { text });
+  //     onAdd(res.data); // send new todo back to parent
+  //     setText('');
+  //   } catch (err) {
+  //     console.error('Failed to add todo:', err);
+  //   }
+  // };
     try {
-      const res = await axios.post('http://localhost:5000/api/todos', { text });
-      onAdd(res.data); // send new todo back to parent
-      setText('');
-    } catch (err) {
-      console.error('Failed to add todo:', err);
+        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/todos`,{ text });
+        onAdd(res.data); // send new todo back to parent
+        setText('');
+      } catch (err) {
+        console.error('Failed to add todo:', err);
     }
   };
 
